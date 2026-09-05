@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImportRequest;
 use App\Http\Resources\ImportResource;
+use App\Http\Resources\ImportStatusResource;
 use App\Jobs\ProcessImportJob;
 use App\Models\Import;
 use App\Models\Supplier;
@@ -38,5 +39,10 @@ class ImportController extends Controller
         return ImportResource::make($import)
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
+    }
+
+    public function show(Import $import): ImportStatusResource
+    {
+        return ImportStatusResource::make($import->load('supplier'));
     }
 }
