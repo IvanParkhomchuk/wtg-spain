@@ -27,12 +27,4 @@ class ImportFactory extends Factory
             'completed_at' => null,
         ];
     }
-
-    public function completed(): static
-    {
-        return $this->state(fn (array $attributes): array => [
-            'status' => Import::STATUS_COMPLETED,
-            'completed_at' => now(),
-        ]);
-    }
 }
